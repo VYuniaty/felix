@@ -7,8 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-image: url('felix.png'); /* Add your image filename here */
-            background-repeat: repeat; /* Set the background to repeat */
+
             text-align: center;
             padding: 100px;
             margin: 0; /* Remove any default margin */
@@ -23,6 +22,7 @@
         .button-container {
             display: flex;
             justify-content: center;
+            flex-direction: column; /* Added to stack the buttons vertically */
         }
 
         .button {
@@ -33,7 +33,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 10px;
+            margin: 10px 0; /* Add margin on top and bottom */
             text-decoration: none;
             transition: background-color 0.3s;
         }
@@ -53,3 +53,4 @@
     </div>
 </body>
 </html>
+
