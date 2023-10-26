@@ -7,9 +7,9 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-
+            
             text-align: center;
-            padding: 50px;
+            padding: 50px; /* Adjust padding for smaller screens */
             margin: 0; /* Remove any default margin */
         }
 
@@ -33,7 +33,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 50px 0; /* Add margin on top and bottom */
+            margin: 20px 0; /* Increase margin on top and bottom */
             text-decoration: none;
             transition: background-color 0.3s;
         }
@@ -41,11 +41,19 @@
         .button:hover {
             background-color: #0056b3;
         }
+
+        @media (max-width: 768px) {
+            .button {
+                padding: 10px 20px; /* Adjust padding for smaller screens */
+                font-size: 16px;
+                margin: 10px 0; /* Increase margin for smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
     <h1>Hello Felix Fabiansky!</h1>
-        <img src="felix.png" alt="Felix Image" style="max-width: 100%; height: auto; margin: 20px;">
+    <img src="felix.png" alt="Felix Image" style="max-width: 100%; height: auto; margin: 20px;">
 
     <div class "button-container">
         <a href="game.html" class="button">Play Game</a>
@@ -53,4 +61,5 @@
     </div>
 </body>
 </html>
+
 
