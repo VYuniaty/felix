@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunny Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .ears {
+            position: absolute;
+            top: -30px;
+            left: 30px;
+        }
+
+        .ear {
+            width: 100px;
+            height: 40px;
+            background-color: #ffcc99;
+            border: 2px solid #ff9966;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+        }
+
+        .ear.left {
+            left: -30px;
+            transform: rotate(10deg);
+        }
+
+        .ear.right {
+            right: -420px;
+            transform: rotate(-10deg);
+        }
+
+        .result {
+            font-size: 24px;
+            margin-bottom: 10px;
+            transition: 0.2s;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+
+        .button {
+            padding: 15px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .message {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .calculator {
+                max-width: 90%;
+            }
+
+            .result {
+                font-size: 20px;
+            }
+
+            .button {
+                padding: 10px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Felix Fabiansky </h1>
+        <div class="message">Calculator</div>
+
+        <div class="ears">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+        </div>
+        <div class="result" id="result">0</div>
+        <div class="buttons">
+            <button class="button" onclick="clearDisplay()">C</button>
+            <button class="button" onclick="appendToDisplay('7')">7</button>
+            <button class="button" onclick="appendToDisplay('8')">8</button>
+            <button class="button" onclick="appendToDisplay('9')">9</button>
+            <button class="button" onclick="appendToDisplay('4')">4</button>
+            <button class="button" onclick="appendToDisplay('5')">5</button>
+            <button class="button" onclick="appendToDisplay('6')">6</button>
+            <button class="button" onclick="appendToDisplay('1')">1</button>
+            <button class="button" onclick="appendToDisplay('2')">2</button>
+            <button class="button" onclick="appendToDisplay('3')">3</button>
+            <button class="button" onclick="appendToDisplay('0')">0</button>
+            <button class="button" onclick="appendToDisplay('.')">.</button>
+            <button class="button" onclick="calculateResult('=')">=</button>
+            <button class="button" onclick="performOperation('+')">+</button>
+            <button class="button" onclick="performOperation('-')">-</button>
+            <button class="button" onclick="performOperation('X')">X</button>
+            <button class="button" onclick="performOperation('/')">/</button>
+            <button class="button" onclick="calculateSquareRoot('√')">√</button>
+            <button class="button" onclick="calculateSquared('x²')">x²</button>
+        </div>
+    </div>
+
+<hi>
+
+
+</hi>
+
+    <button class="button" onclick="goToIndex()">Back</button>
+    <script>
+        let currentDisplay = '';
+        let currentOperation = '';
+        let previousValue = '';
+
+        function clearDisplay() {
+            currentDisplay = '';
+            updateDisplay();
+        }
+
+        function appendToDisplay(value) {
+            if (currentDisplay === 'Error') {
+                clearDisplay();
+            }
+            currentDisplay += value;
+            updateDisplay();
+        }
+
+        function performOperation(operation) {
+            if (currentOperation !== '') {
+                calculateResult();
+            }
+            previousValue = currentDisplay;
+            currentOperation = operation;
+            currentDisplay = '';
+            updateDisplay();
+        }
+
+        function calculateResult(equals) {
+            if (equals === '=') {
+                if (currentOperation === '+') {
+                    currentDisplay = (parseFloat(previousValue) + parseFloat(currentDisplay)).toString();
+                } else if (currentOperation === '-') {
+                    currentDisplay = (parseFloat(previousValue) - parseFloat(currentDisplay)).toString();
+                } else if (currentOperation === 'X') {
+                    currentDisplay = (parseFloat(previousValue) * parseFloat(currentDisplay)).toString();
+                } else if (currentOperation === '/') {
+                    if (currentDisplay === '0') {
+                        currentDisplay = 'Error';
+                    } else {
+                        currentDisplay = (parseFloat(previousValue) / parseFloat(currentDisplay)).toString();
+                    }
+                }
+                currentOperation = '';
+            }
+            updateDisplay();
+        }
+
+        function calculateSquareRoot(symbol) {
+            currentDisplay = Math.sqrt(parseFloat(currentDisplay)).toString();
+            updateDisplay();
+        }
+
+        function calculateSquared(symbol) {
+            currentDisplay = (parseFloat(currentDisplay) ** 2).toString();
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById('result').innerText = currentDisplay === '' ? '0' : currentDisplay;
+        }
+        function goToIndex() {
+        window.location.href = "index.html";
+    }
+    </script>
+</body>
+</html>
